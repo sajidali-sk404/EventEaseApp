@@ -1,0 +1,44 @@
+@page "/events"
+@using EventEase.Services
+@using EventEaseApp.shared
+@inject IEventService EventService
+
+<h1>Upcoming Events</h1>
+
+
+@if(IsDataLoad){
+<button @onclick="LoadData">Show Filtered Data</button>
+} else {
+@foreach (var ev in filteredEvents)
+{
+  @if (ev == null)
+{
+  <p class="error">Event not found. Please check the link or return to the <NavLink href="/events">event list</NavLink>.</p>
+}
+else
+{
+  <NavLink href="@($"/events/{ev.Id}")">
+    <EventCard @key="ev.Id" Event="ev" />
+  </NavLink>
+}
+}
+}
+
+
+
+
+@code {
+  private bool IsDataLoad = false;
+
+  public void LoadData() {
+    IsDataLoad = true;
+  }
+  private List<EventEase.Models.Event> events = new();
+    private List<EventEase.Models.Event> filteredEvents = new();
+
+  protected override async Task OnInitializedAsync()
+  {
+    events = await EventService.GetAll();
+    filteredEvents = events;
+  }
+}

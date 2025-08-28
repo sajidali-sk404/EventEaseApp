@@ -1,0 +1,13 @@
+@using EventEase.Models
+<article class="event-card" role="article">
+  <div class="card-body">
+    <h3>@(string.IsNullOrWhiteSpace(Event?.Title) ? "Untitled Event" : Event.Title)</h3>
+    <p>@(Event?.Date != default ? Event.Date.ToString("MMMM dd, yyyy") : "Date TBD") – @Event?.Location ?? "Location
+      TBD"</p>
+    <p>@Event.Description</p>
+  </div>
+</article>
+
+@code {
+  [Parameter] public EventEase.Models.Event Event { get; set; }
+}

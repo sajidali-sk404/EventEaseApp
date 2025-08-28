@@ -1,0 +1,34 @@
+@page "/events/{Id:guid}"
+@using EventEase.Services
+@using EventEaseApp.shared
+@inject IEventService EventService
+
+@if (eventItem == null)
+{
+  <p>Event not found.</p>
+}
+else
+{
+  <EventCard Event="eventItem" />
+  <NavLink class="btn" href="@($"/events/{Id}/register")">Register</NavLink>
+}
+
+@if (eventItem?.Attendees?.Count > 0)
+{
+  <h4>Attendees</h4>
+  <ul>
+    @foreach (var attendee in eventItem.Attendees)
+    {
+      <li>@attendee.Name (@attendee.Email)</li>
+    }
+  </ul>
+}
+@code {
+  [Parameter] public Guid Id { get; set; }
+  private EventEase.Models.Event eventItem;
+
+  protected override async Task OnParametersSetAsync()
+  {
+    eventItem = await EventService.GetById(Id);
+  }
+}

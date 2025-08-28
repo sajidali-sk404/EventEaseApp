@@ -1,0 +1,1 @@
+C:\Coursera Courses\Full Stack web\Blazor for Front-End Development 4\EventEaseApp\bin\Release\net9.0\publish\web.config

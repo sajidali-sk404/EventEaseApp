@@ -1,0 +1,68 @@
+@page "/edit-event"
+@using EventEase.Models
+@using EventEase.Services
+@using EventEaseApp.shared
+
+<h3>Edit Event</h3>
+
+<EditForm Model="@eventData" OnValidSubmit="HandleSubmit">
+  <DataAnnotationsValidator />
+  <ValidationSummary />
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <InputText id="title" class="form-control" @bind-Value="eventData.Title" />
+    <ValidationMessage For="@(() => eventData.Title)" />
+  </div>
+
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <InputDate id="date" class="form-control" @bind-Value="eventData.Date" />
+    <ValidationMessage For="@(() => eventData.Date)" />
+  </div>
+
+  <div class="form-group">
+    <label for="location">Location:</label>
+    <InputText id="location" class="form-control" @bind-Value="eventData.Location" />
+    <ValidationMessage For="@(() => eventData.Location)" />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <InputTextArea id="description" class="form-control" @bind-Value="eventData.Description" />
+    <ValidationMessage For="@(() => eventData.Description)" />
+  </div>
+</EditForm>
+
+<h4>Live Preview</h4>
+@if (eventData == null)
+{
+  <p class="error">Event not found. Please check the link or return to the <NavLink href="/events">event list</NavLink>.</p>
+}
+else
+{
+  <EventCard Event="eventData" />
+}
+
+@code {
+  private Event eventData = new Event
+  {
+    Title = "Corporate Summit",
+    Date = DateTime.Today.AddDays(7),
+    Location = "Karachi Expo Center",
+    Description = "Annual corporate strategy summit."
+  };
+  private async Task HandleSubmit()
+  {
+    // Example: Save to service
+    await EventService.Add(eventData);
+
+    // Optional: Navigate or show confirmation
+    NavigationManager.NavigateTo("/events");
+
+    // Or show a message
+    Console.WriteLine($"Event '{eventData.Title}' submitted successfully.");
+  }
+
+  [Inject] public IEventService EventService { get; set; }
+  [Inject] public NavigationManager NavigationManager { get; set; }
+}
