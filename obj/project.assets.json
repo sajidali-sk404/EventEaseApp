@@ -1762,11 +1762,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Coursera Courses\\Full Stack web\\Blazor for Front-End Development 4\\EventEaseApp\\EventEaseApp.csproj",
+      "projectUniqueName": "C:\\Coursera Courses\\Full Stack web\\Blazor for Front-End Development 4\\Module 5\\EventEaseApp\\EventEaseApp.csproj",
       "projectName": "EventEaseApp",
-      "projectPath": "C:\\Coursera Courses\\Full Stack web\\Blazor for Front-End Development 4\\EventEaseApp\\EventEaseApp.csproj",
+      "projectPath": "C:\\Coursera Courses\\Full Stack web\\Blazor for Front-End Development 4\\Module 5\\EventEaseApp\\EventEaseApp.csproj",
       "packagesPath": "C:\\Users\\sajid\\.nuget\\packages\\",
-      "outputPath": "C:\\Coursera Courses\\Full Stack web\\Blazor for Front-End Development 4\\EventEaseApp\\obj\\",
+      "outputPath": "C:\\Coursera Courses\\Full Stack web\\Blazor for Front-End Development 4\\Module 5\\EventEaseApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sajid\\AppData\\Roaming\\NuGet\\NuGet.Config"
